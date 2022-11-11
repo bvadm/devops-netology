@@ -41,6 +41,14 @@
     sys
     vagrant@vagrant:~$
 
+#### Правка!
+    vagrant@vagrant:~$ echo '123456' > test
+    vagrant@vagrant:~$ cat test
+    123456
+    vagrant@vagrant:~$ sed 's/#/##/g' <~/test >test_new
+    vagrant@vagrant:~$ cat test_new
+    123456
+
 ### 6. Получится ли, находясь в графическом режиме, вывести данные из PTY в какой-либо из эмуляторов TTY? Сможете ли вы наблюдать выводимые данные?
 #### Вывести получиться. Только нужно будет переключиться в контекст tty (ctrl+alt+f3 в моем случае)
 #### В PTY
