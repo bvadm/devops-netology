@@ -113,9 +113,6 @@
     run as user = netdata
     web files owner = root
     web files group = root
-    ## Netdata is not designed to be exposed to potentially hostile
-    ## networks. See https://github.com/netdata/netdata/issues/164
-    ## bind socket to IP = 127.0.0.1
     bind to = 0.0.0.0
 
 + добавьте в Vagrantfile проброс порта Netdata на свой локальный компьютер и сделайте vagrant reload:
