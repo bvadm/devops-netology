@@ -110,15 +110,15 @@
 
     sudo nano /etc/netdata/netdata.conf
     [global]
-    run as user = netdata
+    run as user = netdata 
     web files owner = root
     web files group = root
     bind to = 0.0.0.0
 
 + добавьте в Vagrantfile проброс порта Netdata на свой локальный компьютер и сделайте vagrant reload:
 
+#### config.vm.network "forwarded_port", guest: 19999, host: 19999
 
-    config.vm.network "forwarded_port", guest: 19999, host: 19999
 ![img.png](img.png)
 
 ### 4. Можно ли по выводу dmesg понять, осознает ли ОС, что загружена не на настоящем оборудовании, а на системе виртуализации?
