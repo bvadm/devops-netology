@@ -106,7 +106,7 @@
 
 ### 3. Установите в свою виртуальную машину Netdata. Воспользуйтесь готовыми пакетами для установки (sudo apt install -y netdata).
 + в конфигурационном файле /etc/netdata/netdata.conf в секции [web] замените значение с localhost на bind to = 0.0.0.0,
-  
+
 
     sudo nano /etc/netdata/netdata.conf
     [global]
