@@ -1,6 +1,6 @@
-## 1. На лекции мы познакомились с node_exporter. В демонстрации его исполняемый файл запускался в background. Этого достаточно для демо, но не для настоящей production-системы, где процессы должны находиться под внешним управлением. Используя знания из лекции по systemd, создайте самостоятельно простой unit-файл для node_exporter:
-#### - поместите его в автозагрузку
-
+### 1. На лекции мы познакомились с node_exporter. В демонстрации его исполняемый файл запускался в background. Этого достаточно для демо, но не для настоящей production-системы, где процессы должны находиться под внешним управлением. Используя знания из лекции по systemd, создайте самостоятельно простой unit-файл для node_exporter:
++ поместите его в автозагрузку
+####
     cd /tmp
     wget https://github.com/prometheus/node_exporter/releases/download/v1.3.1/node_exporter-1.3.1.linux-amd64.tar.gz
     tar zxvf node_exporter-1.3.1.linux-amd64.tar.gz
@@ -20,7 +20,7 @@
     User=nodeuser
     Group=nodeuser
     Type=simple
-    ExecStart=/usr/local/bin/node_exporter
+    ExecStart=/usr/local/bin/node_exporter $OPTS_LOG_LEVEL
     ExecReload=/bin/kill -HUP $MAINPID
     EnvironmentFile=/opt/node_exporter.env
     Restart=on-failure
@@ -32,13 +32,29 @@
     systemctl enable node_exporter.service
     systemctl start node_exporter.service
 
-#### - предусмотрите возможность добавления опций к запускаемому процессу через внешний файл (посмотрите, например, на systemctl cat cron),
-
-    
++ предусмотрите возможность добавления опций к запускаемому процессу через внешний файл (посмотрите, например, на systemctl cat cron),
+####
     echo "OPTS_LOG_LEVEL=\"--log.level=info\"" | sudo tee /opt/node_exporter.env
+####
+    vagrant@vagrant:/$ systemctl status node_exporter.service         
+    ● node_exporter.service - Node Exporter Service
+         Loaded: loaded (/etc/systemd/system/node_exporter.service; enabled; vendor preset: enabled)
+         Active: active (running) since Fri 2022-11-25 20:19:22 +05; 2s ago
+       Main PID: 157386 (node_exporter)
+          Tasks: 4 (limit: 9253)
+         Memory: 4.5M
+            CPU: 13ms
+         CGroup: /system.slice/node_exporter.service
+                 └─157386 /usr/local/bin/node_exporter --log.level=info
 
-#### - удостоверьтесь, что с помощью systemctl процесс корректно стартует, завершается, а после перезагрузки автоматически поднимается.
-
+    Nov 25 20:19:22 cloud node_exporter[157386]: ts=2022-11-25T15:19:22.668Z caller=node_exporter.go:115 level=info collector=thermal_zone
+    Nov 25 20:19:22 cloud node_exporter[157386]: ts=2022-11-25T15:19:22.668Z caller=node_exporter.go:115 level=info collector=time
+    Nov 25 20:19:22 cloud node_exporter[157386]: ts=2022-11-25T15:19:22.668Z caller=node_exporter.go:115 level=info collector=timex
+    Nov 25 20:19:22 cloud node_exporter[157386]: ts=2022-11-25T15:19:22.668Z caller=node_exporter.go:115 level=info collector=udp_queues
+    Nov 25 20:19:22 cloud node_exporter[157386]: ts=2022-11-25T15:19:22.668Z caller=node_exporter.go:115 level=info collector=uname
+#### Передал через внешний файл опцию --log.level=info. Теперь процесс работает с уровнем логирования info.
++ удостоверьтесь, что с помощью systemctl процесс корректно стартует, завершается, а после перезагрузки автоматически поднимается.
+####
     
     vagrant@vagrant:/$ systemctl stop node_exporter
     ==== AUTHENTICATING FOR org.freedesktop.systemd1.manage-units ===
@@ -94,9 +110,9 @@
     node_network_transmit_bytes_total{device="eth0"} 8.161797426e+09
     node_network_transmit_errs_total{device="eth0"} 0
 
-### 3. Установите в свою виртуальную машину Netdata. Воспользуйтесь готовыми пакетами для установки (sudo apt install -y netdata).
-#### - в конфигурационном файле /etc/netdata/netdata.conf в секции [web] замените значение с localhost на bind to = 0.0.0.0,
-
+### 3. Установите в свою виртуальную машину Netdata. Воспользуйтесь готовыми пакетами для установки (sudo apt install -y netdata). 
++ в конфигурационном файле /etc/netdata/netdata.conf в секции [web] замените значение с localhost на bind to = 0.0.0.0,
+####
 
     vagrant@vagrant:~$ sudo nano /etc/netdata/netdata.conf
     [global]
@@ -105,9 +121,8 @@
     web files group = root
     bind to = 0.0.0.0
 
-#### - добавьте в Vagrantfile проброс порта Netdata на свой локальный компьютер и сделайте vagrant reload:
-
-#### config.vm.network "forwarded_port", guest: 19999, host: 19999
++ добавьте в Vagrantfile проброс порта Netdata на свой локальный компьютер и сделайте vagrant reload:
+  + config.vm.network "forwarded_port", guest: 19999, host: 19999
 
 ![img.png](img.png)
 
