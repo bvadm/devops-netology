@@ -1,8 +1,7 @@
 ## Домашнее задание к занятию "3.7. Компьютерные сети.Лекция 2"
 ### 1. Проверьте список доступных сетевых интерфейсов на вашем компьютере. Какие команды есть для этого в Linux и в Windows?
 + ifconfig -a
-    
-
+####
     ifconfig -a
     eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
         inet xx.xx.xx.xx  netmask 255.255.255.255  broadcast 0.0.0.0
@@ -21,17 +20,16 @@
         RX errors 0  dropped 0  overruns 0  frame 0
         TX packets 11837  bytes 8731270 (8.7 MB)
         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
 + ip link show
-
-
+####
     ip link show
     1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000
         link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
     2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP mode DEFAULT group default qlen 1000
         link/ether 96:00:01:63:1f:87 brd ff:ff:ff:ff:ff:ff
 + nmcli device status 
-
-
+####
     nmcli device status        
     DEVICE  TYPE      STATE      CONNECTION 
     eth0    ethernet  unmanaged  --         
@@ -47,8 +45,7 @@
 #### Для этого используется технология Vlan. Устанавливается пакетом vlan.
 #### Пример конфига:
 + netplan
-
-
+####
     network:
         version: 2
         renderer: networkd
