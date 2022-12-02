@@ -170,6 +170,7 @@
 
     vagrant@host1:~$
 ### 7. Соберите дамп трафика утилитой tcpdump в формате pcap, 100 пакетов. Откройте файл pcap в Wireshark.
+    vagrant@host1:~$ sudo tcpdump -nei any -c 100 -w 100.pcap
 ![](security-pic-4.jpg)
 ### 8. Просканируйте хост scanme.nmap.org. Какие сервисы запущены?
     # nmap scanme.nmap.org
