@@ -53,4 +53,4 @@
     ==> Builds finished. The artifacts of successful builds are:
     --> yandex: A disk image was created: ubuntu-20-04-base (id: fd89n5m3mbgso68b2qec) with family name ubuntu-20-04-base
 
-![](1.jpg)
+![](Screenshot_1.jpg)
