@@ -36,6 +36,76 @@
     <h1>I’m DevOps Engineer!</h1>
     </body>
     </html>
+
+### ************************ Правка задания 1 *************************
+##### Листинг файлов
+    root@test:~/netology/docker# ll
+    total 16
+    drwxr-xr-x 2 root root 4096 Feb  5 07:02 ./
+    drwxr-xr-x 8 root root 4096 Jan 28 14:11 ../
+    -rw-r--r-- 1 root root   71 Feb  5 07:01 Dockerfile
+    -rw-r--r-- 1 root root   89 Feb  5 06:49 index.html
+
+    root@test:~/netology/docker# cat Dockerfile 
+    FROM nginx:latest
+    COPY ./index.html /usr/share/nginx/html/index.html
+
+    root@test:~/netology/docker# cat index.html 
+    <html>
+    <head>
+    Hey, Netology
+    </head>
+    <body>
+    <h1>I'm DevOps Engineer!</h1>
+    </body>
+    </html>
+##### Сборка и запуск контейнера nginx
+    root@test:~/netology/docker# docker build -t bvadm/nginx:test . 
+    Sending build context to Docker daemon  3.072kB
+    Step 1/2 : FROM nginx:latest
+    latest: Pulling from library/nginx
+    01b5b2efb836: Pull complete 
+    db354f722736: Pull complete 
+    abb02e674be5: Pull complete 
+    214be53c3027: Pull complete 
+    a69afcef752d: Pull complete 
+    625184acb94e: Pull complete 
+    Digest: sha256:c54fb26749e49dc2df77c6155e8b5f0f78b781b7f0eadd96ecfabdcdfa5b1ec4
+    Status: Downloaded newer image for nginx:latest
+    ---> 9eee96112def
+    Step 2/2 : COPY ./index.html /usr/share/nginx/html/index.html
+    ---> 3050f1e6a60a
+    Successfully built 3050f1e6a60a
+    Successfully tagged bvadm/nginx:test
+
+    root@test:~/netology/docker# docker run -d -p 8080:80 --name mynginx -it bvadm/nginx:test
+    ba198358a2431aa1003d15892adf3246922b3d1cfe6c5b011b3d23bd80f0ab83
+
+    root@test:~/netology/docker# docker ps
+    CONTAINER ID   IMAGE              COMMAND                  CREATED         STATUS         PORTS                                   NAMES
+    ba198358a243   bvadm/nginx:test   "/docker-entrypoint.…"   8 seconds ago   Up 7 seconds   0.0.0.0:8080->80/tcp, :::8080->80/tcp   mynginx
+    
+    root@test:~/netology/docker# curl localhost:8080
+    <html>
+    <head>
+    Hey, Netology
+    </head>
+    <body>
+    <h1>I'm DevOps Engineer!</h1>
+    </body>
+    </html>
+    
+    root@test:~/netology/docker# docker push bvadm/nginx:test
+    The push refers to repository [docker.io/bvadm/nginx]
+    da1471c44879: Pushed 
+    8342f56cc886: Mounted from library/nginx 
+    b74ced7dfeca: Mounted from library/nginx 
+    50ec2edf53d1: Mounted from library/nginx 
+    1341eea4a0c3: Mounted from library/nginx 
+    384534ba6a14: Mounted from library/nginx 
+    bd2fe8b74db6: Mounted from library/nginx 
+    test: digest: sha256:90cd5e92dce679f5757883e73a6cc7aabc5ca9e8bd54b62240abcb7322a675bb size: 1777
+
 ### Задача 2
 Посмотрите на сценарий ниже и ответьте на вопрос: "Подходит ли в этом сценарии использование Docker контейнеров или лучше подойдет виртуальная машина, физическая машина? Может быть возможны разные варианты?"
 
