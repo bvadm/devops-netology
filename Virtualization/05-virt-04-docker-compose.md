@@ -7,14 +7,14 @@
         "builders": [
             {
           "type": "yandex",
-          "token": "<токен>",
-          "folder_id": "b1glga17jjeak43da960",
+          "token": "<token>",
+          "folder_id": "<folder_id>",
           "zone": "ru-central1-a",
           "image_name": "ubuntu-20-04-base",
           "image_family": "ubuntu-20-04-base",
           "image_description": "Ubuntu 20-04 base image",
           "source_image_family": "ubuntu-2004-lts",
-          "subnet_id": "e9baj1jt1e5kdhsra6o3",
+          "subnet_id": "<subnet_id>",
           "use_ipv4_nat": true,
           "disk_type": "network-ssd",
           "ssh_username": "root"
@@ -30,12 +30,12 @@
 
     ==> yandex: Creating temporary RSA SSH key for instance...
     ==> yandex: Using as source image: fd8snjpoq85qqv0mk9gi (name: "ubuntu-20-04-lts-v20230130", family: "ubuntu-2004-lts")
-    ==> yandex: Use provided subnet id e9baj1jt1e5kdhsra6o3
+    ==> yandex: Use provided subnet id <subnet_id>
     ==> yandex: Creating disk...
     ==> yandex: Creating instance...
     ==> yandex: Waiting for instance with id fhmjeapc1cnd0r580b8v to become active...
-        yandex: Detected instance IP: 158.160.56.246
-    ==> yandex: Using SSH communicator to connect: 158.160.56.246
+        yandex: Detected instance IP: 158.160.xxx.xxx
+    ==> yandex: Using SSH communicator to connect: 158.160.xxx.xxx
     ==> yandex: Waiting for SSH to become available...
     ==> yandex: Connected to SSH!
     ==> yandex: Stopping instance...
