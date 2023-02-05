@@ -7,7 +7,7 @@
         "builders": [
             {
           "type": "yandex",
-          "token": "y0_AgAAAAAJGb9EAATuwQAAAADa56Ob0_UZ2hN4S6WVNdrf0NKqpZAy5no",
+          "token": "<токен>",
           "folder_id": "b1glga17jjeak43da960",
           "zone": "ru-central1-a",
           "image_name": "ubuntu-20-04-base",
