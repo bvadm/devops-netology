@@ -195,3 +195,26 @@
     internal_ip_address_node01_yandex_cloud = "10.1.2.17"
 ![](Screenshot_2.jpg)
 
+### Задача 3
+#### С помощью ansible и docker-compose разверните на виртуальной машине из предыдущего задания систему мониторинга на основе Prometheus/Grafana . Используйте ansible код в директории (src/ansible)
+#### Для получения зачета вам необходимо предоставить вывод команды "docker ps" , все контейнеры, описанные в (docker-compose), должны быть в статусе "Up".
+    root@node01:~# docker ps
+    CONTAINER ID   IMAGE                              COMMAND                  CREATED             STATUS                 PORTS                                                                              NAMES
+    d40e7cbe799f   stefanprodan/caddy                 "/sbin/tini -- caddy…"   2 minutes ago       Up 2 minutes           0.0.0.0:3000->3000/tcp, 0.0.0.0:9090-9091->9090-9091/tcp, 0.0.0.0:9093->9093/tcp   caddy
+    b94bfd95426b   grafana/grafana:7.4.2              "/run.sh"                About an hour ago   Up About an hour       3000/tcp                                                                           grafana
+    99d8683e0f7f   prom/node-exporter:v0.18.1         "/bin/node_exporter …"   4 hours ago         Up 4 hours             9100/tcp                                                                           nodeexporter
+    58ff9c1f3710   gcr.io/cadvisor/cadvisor:v0.47.0   "/usr/bin/cadvisor -…"   4 hours ago         Up 4 hours (healthy)   8080/tcp                                                                           cadvisor
+    95ea170ddfd7   prom/prometheus:v2.17.1            "/bin/prometheus --c…"   4 hours ago         Up 4 hours             9090/tcp                                                                           prometheus
+    3a6f8d62df8c   prom/alertmanager:v0.20.0          "/bin/alertmanager -…"   4 hours ago         Up 4 hours             9093/tcp                                                                           alertmanager
+    6deb73f808cf   prom/pushgateway:v1.2.0            "/bin/pushgateway"       4 hours ago         Up 4 hours             9091/tcp                                                                           pushgateway
+
+### Задача 4
+#### Откройте веб-браузер, зайдите на страницу http://<внешний_ip_адрес_вашей_ВМ>:3000.
+##### Используйте для авторизации логин и пароль из (.env-file).
+##### Изучите доступный интерфейс, найдите в интерфейсе автоматически созданные docker-compose панели с графиками(dashboards).
+##### Подождите 5-10 минут, чтобы система мониторинга успела накопить данные.
+##### Для получения зачета, вам необходимо предоставить:
+
+##### Скриншот работающего веб-интерфейса Grafana с текущими метриками, как на примере ниже
+![](Screenshot_3.jpg)
+![](Screenshot_4.jpg)
