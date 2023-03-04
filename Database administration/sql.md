@@ -31,8 +31,7 @@
 ## Задача 2
 В БД из задачи 1:
 + создайте пользователя test-admin-user и БД test_db
-
-
+#####
     root@test:~/netology/sql# docker exec -it postgres bash
     root@2f67aa7cb7c1:/# psql -h localhost -U test-admin-user -W test_db     
     Password: 
@@ -52,10 +51,9 @@
     (4 rows)
 
     test_db=# 
-
+#####
 + в БД test_db создайте таблицу orders и clients (спeцификация таблиц ниже)
-
-
+#####
     test_db=# CREATE TABLE orders ( id SERIAL, Наименование VARCHAR, Цена INT, PRIMARY KEY (id) );
     CREATE TABLE
 
@@ -64,20 +62,19 @@
 
     test_db=# CREATE INDEX ON clients("Страна проживания"); 
     CREATE INDEX
+#####
 + предоставьте привилегии на все операции пользователю test-admin-user на таблицы БД test_db
-
-
+#####
     test_db=# GRANT ALL ON TABLE orders, clients TO "test-admin-user";
     GRANT
-
+#####
 + создайте пользователя test-simple-user
-
-
+#####
     test_db=# CREATE USER "test-simple-user" WITH PASSWORD 'test2';
     CREATE ROLE
+#####
 + предоставьте пользователю test-simple-user права на SELECT/INSERT/UPDATE/DELETE данных таблиц БД test_db
-
-
+#####
     test_db=# GRANT CONNECT ON DATABASE test_db TO "test-simple-user";
     GRANT
 
@@ -86,10 +83,10 @@
     
     test_db=# GRANT SELECT, INSERT, UPDATE, DELETE ON orders, clients TO "test-simple-user";
     GRANT
+
 Приведите:
 + итоговый список БД после выполнения пунктов выше,
-
-
+#####
     test_db=# \l+
                                                                                    List of databases
        Name    |      Owner      | Encoding |  Collate   |   Ctype    |            Access privileges            |  Size   | Tablespace |                Description                 
@@ -103,11 +100,9 @@
                |                 |          |            |            | "test-admin-user"=CTc/"test-admin-user"+|         |            | 
                |                 |          |            |            | "test-simple-user"=c/"test-admin-user"  |         |            | 
     (4 rows)
-
+#####
 + описание таблиц (describe)
-
-
-
+#####
     test_db=# \d+ clients
                                                                Table "public.clients"
           Column       |       Type        | Collation | Nullable |               Default               | Storage  | Stats target | Description 
@@ -135,10 +130,9 @@
     Referenced by:
         TABLE "clients" CONSTRAINT "clients_Заказ_fkey" FOREIGN KEY ("Заказ") REFERENCES orders(id)
     Access method: heap
-
+#####
 + SQL-запрос для выдачи списка пользователей с правами над таблицами test_db
-
-
+#####
     SELECT 
         grantee, table_name, privilege_type 
     FROM 
@@ -148,9 +142,9 @@
         and table_name in ('clients','orders')
     order by 
         1,2,3;
+#####
 + список пользователей с правами над таблицами test_db
-
-
+#####
          grantee      | table_name | privilege_type 
     ------------------+------------+----------------
      test-admin-user  | clients    | DELETE
