@@ -224,8 +224,7 @@
 
 - запросы,
 - результаты их выполнения.
-
-
+#####
     test_db=# SELECT count(1) FROM orders;        
      count 
     -------
