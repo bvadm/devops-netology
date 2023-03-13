@@ -11,10 +11,9 @@
     Preparing to copy...
     Copying to container - 4.096kB
     Successfully copied 4.096kB to mysql:/tmp
-
-    root@test:~/netology/mysql# docker exec -it mysql bash
     
-    root@test:~/netology/mysql# docker exec -it mysql bash                 
+    root@test:~/netology/mysql# docker exec -it mysql bash      
+
     bash-4.4# mysql -u root -p test_db < /tmp/test_dump.sql 
     Enter password: 
     bash-4.4# 
