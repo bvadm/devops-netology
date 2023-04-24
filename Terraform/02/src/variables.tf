@@ -51,3 +51,4 @@ variable "options" {
     serial_port_enable = 1
   }
 }
+
