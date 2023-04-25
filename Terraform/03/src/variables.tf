@@ -34,8 +34,15 @@ variable "vpc_name" {
 variable "options" {
   type   = map(any)
   default = {
-    user    = "ubuntu"
-    ssh-key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICsBMdw626eW/S9dRwhsyNrTk+ZxJyUzISjwBf+/yNt1 yacloud"
     serial_port_enable = 1
   }
 }
+
+locals {
+  user    = "ubuntu"
+  ssh_public_key = file("c:/Users/bv/.ssh/ya_cl.pub")
+}
+
+#variable "create_vm" {
+#  default = false
+#}

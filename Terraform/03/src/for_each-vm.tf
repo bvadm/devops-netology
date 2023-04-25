@@ -1,3 +1,4 @@
+/*
 resource "yandex_compute_instance" "vm" {
   platform_id = var.platform_id
   for_each = {for vm in var.vm_resources: vm.vm_name => vm}
@@ -27,9 +28,10 @@ resource "yandex_compute_instance" "vm" {
 
   metadata = {
     serial-port-enable = var.options.serial_port_enable
-    ssh-keys           = "${var.options.user}:${var.options.ssh-key}"
+    ssh-keys           = "${local.user}:${local.ssh_public_key}"
   }
   depends_on = [
     yandex_compute_instance.web
   ]
 }
+*/
