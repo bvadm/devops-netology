@@ -1,4 +1,4 @@
-data "yandex_compute_image" "ubuntu" {
+/* data "yandex_compute_image" "ubuntu" {
   family = var.vm_image
 }
 
@@ -32,4 +32,4 @@ resource "yandex_compute_instance" "web" {
     serial-port-enable = var.options.serial_port_enable
     ssh-keys           = "${local.user}:${local.ssh_public_key}"
   }
-}
+} */
