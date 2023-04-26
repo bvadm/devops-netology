@@ -1,4 +1,3 @@
-/*
 resource "yandex_compute_instance" "vm" {
   platform_id = var.platform_id
   for_each = {for vm in var.vm_resources: vm.vm_name => vm}
@@ -23,6 +22,7 @@ resource "yandex_compute_instance" "vm" {
 
   network_interface {
     subnet_id = yandex_vpc_subnet.develop.id
+    security_group_ids = [yandex_vpc_security_group.example.id]
     nat       = true
   }
 
@@ -34,4 +34,3 @@ resource "yandex_compute_instance" "vm" {
     yandex_compute_instance.web
   ]
 }
-*/

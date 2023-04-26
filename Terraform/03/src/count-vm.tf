@@ -1,10 +1,9 @@
-/*
 data "yandex_compute_image" "ubuntu" {
   family = var.vm_image
 }
 
 resource "yandex_compute_instance" "web" {
-  count       = 1
+  count       = 2
   name        = "netology-develop-platform-vm-${count.index}"
   platform_id = var.platform_id
   
@@ -34,4 +33,3 @@ resource "yandex_compute_instance" "web" {
     ssh-keys           = "${local.user}:${local.ssh_public_key}"
   }
 }
-*/
