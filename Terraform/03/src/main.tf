@@ -21,7 +21,7 @@ resource "null_resource" "hosts_provision" {
   depends_on = [yandex_compute_instance.vm]
 
   provisioner "local-exec" {
-    command = "cat c:/Users/bv/.ssh/ya_cl | ssh-add -"
+    command = "cat ~/.ssh/ya_cl | ssh-add -"
   }
 
   provisioner "local-exec" {
