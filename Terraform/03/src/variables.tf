@@ -40,7 +40,7 @@ variable "options" {
 
 locals {
   user    = "ubuntu"
-  ssh_public_key = file("c:/Users/bv/.ssh/ya_cl.pub")
+  ssh_public_key = file("~/.ssh/id_ecdsa.pub")
 }
 
 #variable "create_vm" {

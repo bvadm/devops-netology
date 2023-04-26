@@ -21,11 +21,11 @@ resource "null_resource" "hosts_provision" {
   depends_on = [yandex_compute_instance.vm]
 
   provisioner "local-exec" {
-    command = "cat ~/.ssh/ya_cl | ssh-add -"
+    command = "cat ~/.ssh/id_ecdsa | ssh-add -"
   }
 
   provisioner "local-exec" {
-    command = "sleep 30"
+    command = "sleep 10"
   }
 
   provisioner "local-exec" {                  

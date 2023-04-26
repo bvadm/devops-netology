@@ -1,7 +1,3 @@
-/* data "yandex_compute_image" "ubuntu" {
-  family = var.vm_image
-}
-
 resource "yandex_compute_instance" "web" {
   count       = 2
   name        = "netology-develop-platform-vm-${count.index}"
@@ -32,4 +28,4 @@ resource "yandex_compute_instance" "web" {
     serial-port-enable = var.options.serial_port_enable
     ssh-keys           = "${local.user}:${local.ssh_public_key}"
   }
-} */
+}

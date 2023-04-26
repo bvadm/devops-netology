@@ -1,4 +1,8 @@
 ###VM vars
+ data "yandex_compute_image" "ubuntu" {
+  family = var.vm_image
+}
+
 variable "vm_image" {
   type    = string
   default = "ubuntu-2004-lts"
