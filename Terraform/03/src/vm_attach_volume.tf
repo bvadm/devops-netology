@@ -1,4 +1,4 @@
-resource "yandex_compute_disk" "my_vol" {
+/*resource "yandex_compute_disk" "my_vol" {
   count = 3
   size = 1
 }
@@ -45,4 +45,4 @@ resource "yandex_compute_instance" "web" {
     serial-port-enable = var.options.serial_port_enable
     ssh-keys           = "${local.user}:${local.ssh_public_key}"
   }
-}
+}*/
