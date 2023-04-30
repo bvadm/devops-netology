@@ -9,16 +9,16 @@ resource "yandex_vpc_subnet" "develop" {
 }
 
 resource "local_file" "hosts_cfg" {
-  depends_on = [yandex_compute_instance.vm]
+  depends_on = [yandex_compute_instance.vm, yandex_compute_instance.web]
   content = templatefile("${path.module}/hosts.tftpl",
 
-    { webservers = yandex_compute_instance.vm})
+    { webservers = [yandex_compute_instance.vm] + yandex_compute_instance.web.id})
 
   filename = "${abspath(path.module)}/hosts.cfg"
 }
 
 resource "null_resource" "hosts_provision" {
-  depends_on = [yandex_compute_instance.vm]
+  depends_on = [yandex_compute_instance.vm, yandex_compute_instance.web]
 
   provisioner "local-exec" {
     command = "cat ~/.ssh/id_ecdsa | ssh-add -"
