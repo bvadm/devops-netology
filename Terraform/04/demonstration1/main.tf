@@ -14,8 +14,13 @@ provider "yandex" {
   zone      = var.default_zone
 }
 
+provider "null" {}
 
-
+#module "vpc_dev" {
+#  source = "./vpc"
+#  network_id = yandex_vpc_network.develop.id
+#  subnet_zones = var.zone
+#}
 #создаем облачную сеть
 resource "yandex_vpc_network" "develop" {
   name = "develop"
