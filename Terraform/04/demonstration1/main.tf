@@ -14,8 +14,6 @@ provider "yandex" {
   zone      = var.default_zone
 }
 
-#provider "null" {}
-
 #module "vpc_dev" {
 #  source = "./vpc"
 #  network_id = yandex_vpc_network.develop.id
@@ -57,11 +55,5 @@ data "template_file" "cloudinit" {
  template = "${file("${path.module}/cloud-init.yml")}"
  vars = {
     ssh_public_key = var.public_key
-  }
-}
-
-resource "null_resource" "install_nginx" {
-  provisioner "remote-exec" {
-    command = "sudo apt update && sudo apt install nginx -y"
   }
 }
