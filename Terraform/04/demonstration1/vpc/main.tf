@@ -9,6 +9,15 @@
 #  network_id     = yandex_vpc_network.develop.id
 #  v4_cidr_blocks = [var.ip_block]
 #}
+terraform {
+  required_providers {
+    yandex = {
+      source = "yandex-cloud/yandex"
+    }
+  }
+  required_version = ">=0.13"
+}
+
 locals {
   vpc_name    = "vpc-name"
   subnet_name = "subnet-name"
