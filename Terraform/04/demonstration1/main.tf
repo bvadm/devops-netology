@@ -14,7 +14,7 @@ provider "yandex" {
   zone      = var.default_zone
 }
 
-provider "null" {}
+#provider "null" {}
 
 #module "vpc_dev" {
 #  source = "./vpc"
@@ -60,8 +60,8 @@ data "template_file" "cloudinit" {
   }
 }
 
-resource "null_resource" "install_nginx" {
-  provisioner "local-exec" {
-    command = "sudo apt update && sudo apt install nginx -y"
-  }
-}
+#resource "null_resource" "install_nginx" {
+#  provisioner "local-exec" {
+#    command = "sudo apt update && sudo apt install nginx -y"
+#  }
+#}
