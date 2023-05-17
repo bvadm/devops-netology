@@ -36,7 +36,7 @@ module "test-vm" {
   subnet_zones    = ["ru-central1-a"]
   subnet_ids      = [ yandex_vpc_subnet.develop.id ]
   instance_name   = "web"
-  instance_count  = 2
+  instance_count  = 1
   image_family    = "ubuntu-2004-lts"
   public_ip       = true
   
@@ -49,6 +49,14 @@ module "test-vm" {
 
 #Пример передачи cloud-config в ВМ для демонстрации №3
 data "template_file" "cloudinit" {
- template = file("./cloud-init.yml")
+ template = "${file("${path.module}/cloud-init.yml")}"
+ vars = {
+    ssh_public_key = var.public_key
+  }
 }
 
+resource "null_resource" "install_nginx" {
+  provisioner "local-exec" {
+    command = "sudo apt update && sudo apt install nginx -y"
+  }
+}

@@ -33,5 +33,5 @@ variable "vpc_name" {
 
 variable "public_key" {
   type    = string
-  default = ""
+  default = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICsBMdw626eW/S9dRwhsyNrTk+ZxJyUzISjwBf+/yNt1 yacloud"
 }
