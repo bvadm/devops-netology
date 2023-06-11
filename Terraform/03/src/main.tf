@@ -11,9 +11,7 @@ resource "yandex_vpc_subnet" "develop" {
 resource "local_file" "hosts_cfg" {
   depends_on = [yandex_compute_instance.vm, yandex_compute_instance.web]
   content = templatefile("${path.module}/hosts.tftpl",
-
-    { webservers = yandex_compute_instance.vm } )
-
+    { webservers = yandex_compute_instance.vm + {for server in yandex_compute_instance.web: server.name => {name = server.name}}})
   filename = "${abspath(path.module)}/hosts.cfg"
 }
 
