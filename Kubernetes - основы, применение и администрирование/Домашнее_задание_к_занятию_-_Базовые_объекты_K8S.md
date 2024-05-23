@@ -17,7 +17,7 @@
       - name: echoserver
         image: gcr.io/kubernetes-e2e-test-images/echoserver:2.2
         ports:
-        - containerPort: 80
+        - containerPort: 8080
 
 
     root@sysms:~/k8s/1.2# kubectl apply -f pod-hello-world.yaml
