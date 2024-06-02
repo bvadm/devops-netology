@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dpl-nginx-init
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: dpl-nginx-init
+  template:
+    metadata:
+      labels:
+        app: dpl-nginx-init
+    spec:
+      containers:
+      - name: dpl-nginx-init
+        image: nginx:latest
+      initContainers:
+      - name: busybox-init
+        image: busybox
+        command: ['sleep', '20']

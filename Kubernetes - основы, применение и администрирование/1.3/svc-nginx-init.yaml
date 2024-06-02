@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-nginx-init
+  namespace: default
+spec:
+  selector:
+    app: dpl-nginx-init
+  ports:
+  - port: 80

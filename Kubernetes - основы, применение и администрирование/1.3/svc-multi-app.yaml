@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-multi-app
+  namespace: default
+spec:
+  selector:
+    app: dpl-multi-app
+  ports:
+  - name: http-nginx
+    protocol: TCP
+    port: 80
+    targetPort: 80
+  - name: http-tool
+    protocol: TCP
+    port: 10443
+    targetPort: 10443
